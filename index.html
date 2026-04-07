@@ -131,17 +131,22 @@ function createHearts(){
 
 // SLIDER
 let index=0;const slides=document.querySelectorAll('.slide');
+let slideInterval;
 function startSlider(){
  slides[index].classList.add('active');
- setInterval(()=>{
- slides[index].classList.remove('active');
- index=(index+1)%slides.length;
- slides[index].classList.add('active');
- if(index===slides.length-1){
- setTimeout(()=>{
- document.getElementById('finalMessage').style.display='block';
- },6000);
- }
+ slideInterval = setInterval(()=>{
+  // If last slide already shown, stop everything
+  if(index === slides.length - 1){
+    clearInterval(slideInterval);
+    setTimeout(()=>{
+      document.getElementById('finalMessage').style.display='block';
+    },5000);
+    return;
+  }
+
+  slides[index].classList.remove('active');
+  index++;
+  slides[index].classList.add('active');
  },7000);
 }
 
@@ -150,8 +155,13 @@ const nameText="Happy Birthday Khushi ❤️";
 let ni=0;
 function animateName(){
  const el=document.getElementById('finalText');
- setInterval(()=>{
- if(ni<nameText.length){el.innerHTML+=nameText.charAt(ni);ni++;}
+ const nameInterval=setInterval(()=>{
+  if(ni<nameText.length){
+    el.innerHTML+=nameText.charAt(ni);
+    ni++;
+  } else {
+    clearInterval(nameInterval);
+  }
  },120);
 }
 
