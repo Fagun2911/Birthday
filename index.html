@@ -14,23 +14,29 @@ body, html {margin:0;padding:0;font-family:'Segoe UI',sans-serif;overflow:hidden
 input,button {padding:10px;font-size:18px;border-radius:10px;border:none;margin-top:10px;}
 button {background:pink;cursor:pointer;}
 
-.slider {display:none;width:100%;height:100vh;position:relative;overflow:hidden;}
+.slider {display:none;width:100%;height:100vh;position:relative;}
 
 .slide {
- position:absolute;width:100%;height:100%;background-size:cover;background-position:center;display:flex;justify-content:center;align-items:center;text-align:center;padding:20px;opacity:0;transition:all 1.5s ease;
- filter:blur(10px) scale(1.2);
+ position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:space-around;padding:40px;box-sizing:border-box;opacity:0;transition:all 2s ease;
 }
 
-.slide.active {opacity:1;filter:blur(0) scale(1);}
+.slide.active {opacity:1;}
 
-h1 {font-size:60px;animation:glow 2s ease-in-out infinite alternate;}
-@keyframes glow {
- from {text-shadow:0 0 10px pink,0 0 20px pink;}
- to {text-shadow:0 0 30px red,0 0 60px red;}
+.imgBox {
+ width:40%;height:60%;background-size:cover;background-position:center;border-radius:20px;box-shadow:0 0 20px rgba(255,255,255,0.3);
 }
 
-/* Floating hearts */
-.heart {position:absolute;color:pink;font-size:20px;animation:float 5s linear infinite;}
+.textBox {
+ width:40%;font-size:32px;line-height:1.5;text-align:left;
+}
+
+.reverse {flex-direction:row-reverse;}
+
+h1 {font-size:60px;animation:glow 2s ease-in-out infinite alternate;text-align:center;}
+@keyframes glow {from{text-shadow:0 0 10px pink;}to{text-shadow:0 0 40px red;}}
+
+/* Hearts */
+.heart {position:absolute;color:pink;font-size:20px;animation:float 6s linear infinite;z-index:0;}
 @keyframes float {0%{transform:translateY(100vh);opacity:1;}100%{transform:translateY(-10vh);opacity:0;}}
 
 #qr {position:absolute;bottom:20px;right:20px;width:100px;}
@@ -51,19 +57,31 @@ canvas {position:absolute;top:0;left:0;z-index:-1;}
 
 <div class="slider" id="slider">
 
-<div class="slide" style="background-image:url('us1.jpg')">तुम्हारी मुस्कान में कुछ बात है,<br>दिल को सुकून देने वाली रात है,<br>तुम पास रहो तो हर दिन खास है,<br>तुम ही मेरी दुनिया हो।</div>
+<div class="slide">
+ <div class="imgBox" style="background-image:url('us1.jpg')"></div>
+ <div class="textBox">तुम्हारी मुस्कान में कुछ बात है,<br>दिल को सुकून देने वाली रात है,<br>तुम पास रहो तो हर दिन खास है,<br>तुम ही मेरी दुनिया हो।</div>
+</div>
 
-<div class="slide" style="background-image:url('us2.jpg')">तेरे बिना अधूरी सी लगती है जिंदगी,<br>तेरे साथ हर खुशी पूरी लगती है,<br>तू साथ हो तो हर सपना अपना है,<br>तू ही मेरी हकीकत है।</div>
+<div class="slide reverse">
+ <div class="imgBox" style="background-image:url('us2.jpg')"></div>
+ <div class="textBox">तेरे बिना अधूरी सी लगती है जिंदगी,<br>तेरे साथ हर खुशी पूरी लगती है,<br>तू साथ हो तो हर सपना अपना है,<br>तू ही मेरी हकीकत है।</div>
+</div>
 
-<div class="slide" style="background-image:url('us3.jpg')">तेरी बातों में जादू सा है,<br>तेरी हंसी में सुकून सा है,<br>तू मिले तो सब मिल जाए,<br>तू ही मेरी खुशी है।</div>
+<div class="slide">
+ <div class="imgBox" style="background-image:url('us3.jpg')"></div>
+ <div class="textBox">तेरी बातों में जादू सा है,<br>तेरी हंसी में सुकून सा है,<br>तू मिले तो सब मिल जाए,<br>तू ही मेरी खुशी है।</div>
+</div>
 
-<div class="slide" style="background-image:url('us4.jpg')">हर पल तेरा साथ चाहिए,<br>हर दिन तेरा प्यार चाहिए,<br>बस तू रहे मेरी जिंदगी में,<br>यही ख्वाब चाहिए।</div>
+<div class="slide reverse">
+ <div class="imgBox" style="background-image:url('us4.jpg')"></div>
+ <div class="textBox">हर पल तेरा साथ चाहिए,<br>हर दिन तेरा प्यार चाहिए,<br>बस तू रहे मेरी जिंदगी में,<br>यही ख्वाब चाहिए।</div>
+</div>
 
 <div class="slide" id="lastSlide">
  <canvas id="meteorCanvas"></canvas>
  <canvas id="fireworksCanvas"></canvas>
  <h1 id="finalText"></h1>
- <img id="qr" src="qr.png">
+ 
 </div>
 
 </div>
@@ -75,7 +93,7 @@ function checkPassword(){
  document.getElementById('introScreen').style.display='flex';
  typeWriter();
  document.getElementById('bgMusic').play();
- } else alert('Wrong Password');
+ }
 }
 
 // Typewriter
@@ -85,7 +103,7 @@ function typeWriter(){
  if(i<msg.length){
  document.getElementById('typeText').innerHTML+=msg.charAt(i);
  i++;
- setTimeout(typeWriter,50);
+ setTimeout(typeWriter,60);
  } else {
  setTimeout(()=>{
  document.getElementById('introScreen').style.display='none';
@@ -93,11 +111,11 @@ function typeWriter(){
  startSlider();
  createHearts();
  animateName();
- },2000);
+ },3000);
  }
 }
 
-// Slider
+// Slider slower
 let index=0;const slides=document.querySelectorAll('.slide');
 function startSlider(){
  slides[index].classList.add('active');
@@ -105,10 +123,10 @@ function startSlider(){
  slides[index].classList.remove('active');
  index=(index+1)%slides.length;
  slides[index].classList.add('active');
- },4000);
+ },7000);
 }
 
-// Hearts
+// Hearts background
 function createHearts(){
  setInterval(()=>{
  const heart=document.createElement('div');
@@ -116,21 +134,18 @@ function createHearts(){
  heart.innerHTML='❤️';
  heart.style.left=Math.random()*100+'%';
  document.body.appendChild(heart);
- setTimeout(()=>heart.remove(),5000);
- },300);
+ setTimeout(()=>heart.remove(),6000);
+ },400);
 }
 
-// Animate Name
+// Name animation
 const nameText="Happy Birthday Khushi ❤️";
 let ni=0;
 function animateName(){
  const el=document.getElementById('finalText');
  setInterval(()=>{
- if(ni<nameText.length){
- el.innerHTML+=nameText.charAt(ni);
- ni++;
- }
- },100);
+ if(ni<nameText.length){el.innerHTML+=nameText.charAt(ni);ni++;}
+ },120);
 }
 
 // Meteor
@@ -147,29 +162,9 @@ const fcanvas=document.getElementById('fireworksCanvas');
 const fctx=fcanvas.getContext('2d');
 fcanvas.width=window.innerWidth;fcanvas.height=window.innerHeight;
 let particles=[];
-
-function createFirework(){
- let x=Math.random()*fcanvas.width;
- let y=Math.random()*fcanvas.height/2;
- for(let i=0;i<50;i++){
- particles.push({x:x,y:y,angle:Math.random()*2*Math.PI,speed:Math.random()*5+2,life:100});
- }
-}
-
-function drawFireworks(){
- fctx.clearRect(0,0,fcanvas.width,fcanvas.height);
- particles.forEach((p,i)=>{
- p.x+=Math.cos(p.angle)*p.speed;
- p.y+=Math.sin(p.angle)*p.speed;
- p.life--;
- fctx.fillStyle='white';
- fctx.fillRect(p.x,p.y,2,2);
- if(p.life<=0) particles.splice(i,1);
- });
-}
-
-setInterval(createFirework,1500);
-setInterval(drawFireworks,30);
+function createFirework(){let x=Math.random()*fcanvas.width;let y=Math.random()*fcanvas.height/2;for(let i=0;i<50;i++){particles.push({x:x,y:y,angle:Math.random()*2*Math.PI,speed:Math.random()*5+2,life:100});}}
+function drawFireworks(){fctx.clearRect(0,0,fcanvas.width,fcanvas.height);particles.forEach((p,i)=>{p.x+=Math.cos(p.angle)*p.speed;p.y+=Math.sin(p.angle)*p.speed;p.life--;fctx.fillStyle='white';fctx.fillRect(p.x,p.y,2,2);if(p.life<=0) particles.splice(i,1);});}
+setInterval(createFirework,1500);setInterval(drawFireworks,30);
 </script>
 
 </body>
