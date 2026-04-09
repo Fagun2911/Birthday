@@ -65,7 +65,7 @@ button{background:#ff4d6d;color:white;cursor:pointer}
 <div id="lock">
 <h1>💖 Welcome my love 💖</h1>
 <p>Please enter the password<br>something special is waiting for you !!</p>
-<input type="password" id="pass" placeholder="Enter password">
+<input type="password" id="pass" placeholder="Enter password" onkeypress="if(event.key==='Enter') unlock()">
 <button onclick="unlock()">Unlock</button>
 </div>
 
@@ -126,12 +126,21 @@ button{background:#ff4d6d;color:white;cursor:pointer}
 let slides=document.querySelectorAll('.slide');let i=0;let inter;
 
 function unlock(){
- let p = document.getElementById('pass').value;
- if(p==='14052001'){
+ let input = document.getElementById('pass');
+ if(!input) return;
+ let p = input.value.trim();
+ if(p === '14052001'){
    document.getElementById('lock').style.display='none';
    let music = document.getElementById('music');
    if(music){
      music.play().catch(()=>{});
+   }
+   start();
+ } else {
+   input.value='';
+   input.placeholder='Wrong password, try again ❤️';
+ }
+});
    }
    start();
  } else {
