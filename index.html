@@ -18,6 +18,9 @@ button{background:#ff4d6d;color:white;cursor:pointer}
 .row{display:flex;width:100%;justify-content:space-around;align-items:center;gap:20px}
 .reverse{flex-direction:row-reverse}
 .imgBox{width:28%;height:50%}
+/* smaller for slide 3 & 4 */
+.slide:nth-of-type(3) .imgBox,
+.slide:nth-of-type(4) .imgBox{width:24%;height:45%}
 .imgBox img{width:100%;height:100%;object-fit:contain;border-radius:20px}
 .textBox{width:45%;font-size:34px;line-height:1.8}
 
@@ -40,7 +43,7 @@ button{background:#ff4d6d;color:white;cursor:pointer}
 #msg{display:none;font-size:26px;width:80%;text-align:center}
 
 /* END */
-#end{position:absolute;bottom:-100px;font-size:28px;text-align:center;width:100%;transition:2s;padding:20px}
+#end{position:absolute;bottom:-100px;font-size:30px;text-align:center;width:100%;transition:2s;padding:20px;font-family:'Brush Script MT',cursive;white-space:pre-wrap}
 
 /* RESPONSIVE */
 @media(max-width:768px){
@@ -116,7 +119,7 @@ button{background:#ff4d6d;color:white;cursor:pointer}
 </div>
 
 <div class="slide">
-<div id="end">Thank you for coming into my life Khushali,<br>God may bless you with lots of happiness and Love (from me) ❤️</div>
+<div id="end"></div>
 </div>
 
 <script>
@@ -155,7 +158,10 @@ function start(){
  document.getElementById('end').style.bottom='40%';
  },4000);
  }
- if(i===7) document.getElementById('end').style.bottom='40%';
+ if(i===7){
+ document.getElementById('end').style.bottom='40%';
+ typeEnd();
+}
 
  },7000);
 }
@@ -177,7 +183,20 @@ function countdown(){
  },1000);
 }
 
-// button
+// final typing message
+function typeEnd(){
+ let txt = "I love you Khushi💗 , See you Soon Baby....... 💕\nBe happy keep smiling and shine as always and be mine for ever ♾️";
+ let el = document.getElementById('end');
+ el.innerHTML = "";
+ let k=0;
+ let t=setInterval(()=>{
+ el.innerHTML += txt[k];
+ k++;
+ if(k>=txt.length) clearInterval(t);
+ },50);
+}
+
+// button (kept if needed)
 function showMsg(){
  let txt="You are my peace, my happiness, and my forever. I will always love you ❤️";
  let el=document.getElementById('msg');
@@ -187,6 +206,7 @@ function showMsg(){
  el.innerHTML+=txt[j];j++;
  if(j>=txt.length)clearInterval(t);
  },40);
+},40);
 }
 </script>
 
