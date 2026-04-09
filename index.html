@@ -8,46 +8,53 @@
 body,html{margin:0;padding:0;font-family:'Segoe UI';overflow:hidden;background:black;color:white}
 
 /* LOCK */
-#lock{position:fixed;width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;background:linear-gradient(135deg,#ff758c,#ff7eb3);z-index:10}
+#lock{position:fixed;width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;background:linear-gradient(135deg,#ff758c,#ff7eb3);z-index:10;text-align:center;padding:20px}
 input,button{padding:12px 18px;border-radius:25px;border:none;margin-top:10px;font-size:18px}
 button{background:#ff4d6d;color:white;cursor:pointer}
 
 /* SLIDES */
-.slide{position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;opacity:0;transition:1.5s}
+.slide{position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;opacity:0;transition:1.5s;padding:20px;box-sizing:border-box}
 .slide.active{opacity:1}
-.row{display:flex;width:100%;justify-content:space-around;align-items:center}
+.row{display:flex;width:100%;justify-content:space-around;align-items:center;gap:20px}
 .reverse{flex-direction:row-reverse}
-.imgBox{width:40%;height:70%}
+.imgBox{width:35%;height:60%}
 .imgBox img{width:100%;height:100%;object-fit:contain;border-radius:20px}
-.textBox{width:40%;font-size:32px;line-height:1.6}
+.textBox{width:45%;font-size:34px;line-height:1.8}
 
 /* HEARTS */
 .heart{position:fixed;bottom:-20px;color:pink;animation:float 8s linear infinite}
 @keyframes float{0%{transform:translateY(0)}100%{transform:translateY(-100vh)}}
 
 /* FINAL */
-#finalText{font-size:60px;transition:1.5s}
+#finalText{font-size:60px;transition:1.5s;text-align:center}
 .slideDown{transform:translateY(250px)}
-#finalMsg{display:none;font-size:28px;background:rgba(0,0,0,0.7);padding:20px;border-radius:15px}
+#finalMsg{display:none;font-size:28px;background:rgba(0,0,0,0.7);padding:20px;border-radius:15px;text-align:center}
 
-/* ROCKET */
-#rocket{font-size:80px;transition:2s}
-#count{font-size:50px}
-#love{display:none;font-size:50px}
+/* COUNTDOWN */
+#count{font-size:80px;font-weight:bold;letter-spacing:10px}
 
 /* BUTTON */
-#btn{padding:15px 25px;background:pink;border-radius:30px;font-size:20px}
+#btn{padding:15px 25px;background:pink;border-radius:30px;font-size:22px;cursor:pointer}
 #msg{display:none;font-size:26px;width:80%;text-align:center}
 
 /* END */
-#end{position:absolute;bottom:-100px;font-size:28px;text-align:center;width:100%;transition:2s}
+#end{position:absolute;bottom:-100px;font-size:28px;text-align:center;width:100%;transition:2s;padding:20px}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+.row{flex-direction:column}
+.reverse{flex-direction:column}
+.imgBox{width:80%;height:auto}
+.textBox{width:90%;font-size:24px;text-align:center}
+}
 
 </style>
 </head>
 <body>
 
 <div id="lock">
-<h1>💖 Welcome 💖</h1>
+<h1>💖 Welcome my love 💖</h1>
+<p>Please enter the password<br>something special is waiting for you !!</p>
 <input type="password" id="pass" placeholder="Enter password">
 <button onclick="unlock()">Unlock</button>
 </div>
@@ -56,30 +63,42 @@ button{background:#ff4d6d;color:white;cursor:pointer}
 
 <!-- SLIDES -->
 <div class="slide active">
-<div class="row"><div class="imgBox"><img src="us1.jpg"></div><div class="textBox">तुम्हारी मुस्कान में कुछ बात है<br>दिल को सुकून देने वाली रात है</div></div>
+<div class="row">
+<div class="imgBox"><img src="us1.jpg"></div>
+<div class="textBox">तुम्हारी मुस्कान में कुछ बात है,<br>दिल को सुकून देने वाली रात है,<br>तुम साथ हो तो सब अच्छा लगता है,<br>वरना ये दुनिया भी बेकार सी लगती है।</div>
+</div>
 </div>
 
 <div class="slide">
-<div class="row reverse"><div class="imgBox"><img src="us2.jpg"></div><div class="textBox">तेरे बिना अधूरी सी लगती है जिंदगी</div></div>
+<div class="row reverse">
+<div class="imgBox"><img src="us2.jpg"></div>
+<div class="textBox">तेरे बिना अधूरी सी लगती है जिंदगी,<br>हर खुशी जैसे अधूरी सी लगती है,<br>जब तू पास होती है तो सब सही लगता है,<br>वरना हर चीज अधूरी सी लगती है।</div>
+</div>
 </div>
 
 <div class="slide">
-<div class="row"><div class="imgBox"><img src="us3.jpg"></div><div class="textBox">तेरी हंसी में सुकून सा है</div></div>
+<div class="row">
+<div class="imgBox"><img src="us3.jpg"></div>
+<div class="textBox">तेरी हंसी में सुकून सा है,<br>तेरी बातों में जुनून सा है,<br>तू जो साथ हो तो डर नहीं लगता,<br>क्योंकि तुझमें मेरा सारा सुकून सा है।</div>
+</div>
 </div>
 
 <div class="slide">
-<div class="row reverse"><div class="imgBox"><img src="us4.jpg"></div><div class="textBox">हर पल तेरा साथ चाहिए</div></div>
+<div class="row reverse">
+<div class="imgBox"><img src="us4.jpg"></div>
+<div class="textBox">हर पल तेरा साथ चाहिए,<br>तेरी हर बात चाहिए,<br>बस तू ही तू रहे जिंदगी में,<br>मुझे और कुछ नहीं चाहिए।</div>
+</div>
 </div>
 
 <div class="slide" id="final">
+<div style="text-align:center">
 <h1 id="finalText">Happy Birthday Khushi ❤️</h1>
 <div id="finalMsg">You are my everything ❤️</div>
 </div>
+</div>
 
-<div class="slide" id="rocketSlide">
+<div class="slide">
 <div id="count">3</div>
-<div id="rocket">🚀</div>
-<div id="love">I Love You Khushali ❤️</div>
 </div>
 
 <div class="slide">
@@ -88,7 +107,7 @@ button{background:#ff4d6d;color:white;cursor:pointer}
 </div>
 
 <div class="slide">
-<div id="end">Thank you for coming into my life Khushali,<br>God bless you always ❤️</div>
+<div id="end">Thank you for coming into my life Khushali,<br>God may bless you with lots of happiness and Love (from me) ❤️</div>
 </div>
 
 <script>
@@ -114,7 +133,7 @@ function start(){
  document.getElementById('finalMsg').style.display='block';
  },3000)}
 
- if(i===5) rocket();
+ if(i===5) countdown();
  if(i===7) document.getElementById('end').style.bottom='40%';
 
  },7000);
@@ -126,21 +145,14 @@ setInterval(()=>{
  setTimeout(()=>h.remove(),8000);
 },300);
 
-// rocket
-function rocket(){
+// countdown
+function countdown(){
  let c=3;
+ let el=document.getElementById('count');
  let t=setInterval(()=>{
- document.getElementById('count').innerHTML=c;
+ el.innerHTML=c;
  c--;
- if(c<0){
- clearInterval(t);
- document.getElementById('count').style.display='none';
- document.getElementById('rocket').style.transform='translateY(-300px)';
- setTimeout(()=>{
- document.getElementById('rocket').style.display='none';
- document.getElementById('love').style.display='block';
- },2000);
- }
+ if(c<0){clearInterval(t);el.innerHTML='❤️';}
  },1000);
 }
 
