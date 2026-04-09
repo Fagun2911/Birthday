@@ -126,11 +126,18 @@ button{background:#ff4d6d;color:white;cursor:pointer}
 let slides=document.querySelectorAll('.slide');let i=0;let inter;
 
 function unlock(){
- if(document.getElementById('pass').value==='14052001'){
- document.getElementById('lock').style.display='none';
- document.getElementById('music').play();
- start();
+ let p = document.getElementById('pass').value;
+ if(p==='14052001'){
+   document.getElementById('lock').style.display='none';
+   let music = document.getElementById('music');
+   if(music){
+     music.play().catch(()=>{});
+   }
+   start();
+ } else {
+   alert('Wrong Password ❤️');
  }
+}
 }
 
 function start(){
@@ -185,7 +192,8 @@ function countdown(){
 
 // final typing message
 function typeEnd(){
- let txt = "I love you Khushi💗 , See you Soon Baby....... 💕\nBe happy keep smiling and shine as always and be mine for ever ♾️";
+ let txt = "I love you Khushi💗 , See you Soon Baby....... 💕
+Be happy keep smiling and shine as always and be mine for ever ♾️";
  let el = document.getElementById('end');
  el.innerHTML = "";
  let k=0;
