@@ -17,7 +17,7 @@ button{background:#ff4d6d;color:white;cursor:pointer}
 .slide.active{opacity:1}
 .row{display:flex;width:100%;justify-content:space-around;align-items:center;gap:20px}
 .reverse{flex-direction:row-reverse}
-.imgBox{width:30%;height:55%}
+.imgBox{width:28%;height:50%}
 .imgBox img{width:100%;height:100%;object-fit:contain;border-radius:20px}
 .textBox{width:45%;font-size:34px;line-height:1.8}
 
@@ -34,7 +34,9 @@ button{background:#ff4d6d;color:white;cursor:pointer}
 #count{font-size:90px;font-weight:bold;letter-spacing:12px;font-family:'Courier New', cursive, monospace;text-shadow:0 0 20px pink,0 0 40px hotpink}
 
 /* BUTTON */
-#btn{padding:15px 25px;background:pink;border-radius:30px;font-size:22px;cursor:pointer}
+/* HEART BEAT */
+#heartBeat{font-size:70px;display:none;animation:beat 1s infinite}
+@keyframes beat{0%,100%{transform:scale(1)}50%{transform:scale(1.3)}}
 #msg{display:none;font-size:26px;width:80%;text-align:center}
 
 /* END */
@@ -110,8 +112,7 @@ button{background:#ff4d6d;color:white;cursor:pointer}
 </div>
 
 <div class="slide">
-<div id="btn" onclick="showMsg()">💖 Please Press Me 💖</div>
-<div id="msg"></div>
+<div id="heartBeat">❤️</div>
 </div>
 
 <div class="slide">
@@ -137,13 +138,23 @@ function start(){
  slides[i].classList.add('active');
 
  if(i===4){setTimeout(()=>{
- document.getElementById('finalText').classList.add('slideDown');
+ document.getElementById('finalText').style.display='none';
  document.getElementById('finalMsg').style.display='block';
  let name=document.querySelector('.nameAnim');
  name.style.opacity='1';
  },3000)}
 
  if(i===5) countdown();
+ if(i===6){
+ let hb=document.getElementById('heartBeat');
+ hb.style.display='block';
+ setTimeout(()=>{
+ hb.style.display='none';
+ i++;
+ slides[i].classList.add('active');
+ document.getElementById('end').style.bottom='40%';
+ },4000);
+ }
  if(i===7) document.getElementById('end').style.bottom='40%';
 
  },7000);
