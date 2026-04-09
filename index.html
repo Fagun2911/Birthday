@@ -3,111 +3,96 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ultimate Birthday</title>
+<title>Khushi Birthday</title>
 <style>
-body,html{margin:0;padding:0;font-family:'Segoe UI';overflow:hidden;background:linear-gradient(135deg,#ff758c,#ff7eb3);color:white}
+body,html{margin:0;padding:0;font-family:'Segoe UI';overflow:hidden;background:black;color:white}
 
-/* LOCK SCREEN */
-#lock{
-position:fixed;width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;z-index:10;
-}
+/* LOCK */
+#lock{position:fixed;width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;background:linear-gradient(135deg,#ff758c,#ff7eb3);z-index:10}
 input,button{padding:12px 18px;border-radius:25px;border:none;margin-top:10px;font-size:18px}
 button{background:#ff4d6d;color:white;cursor:pointer}
 
-.slide{position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;flex-direction:column;opacity:0;transition:1.5s}
+/* SLIDES */
+.slide{position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;opacity:0;transition:1.5s}
 .slide.active{opacity:1}
-
 .row{display:flex;width:100%;justify-content:space-around;align-items:center}
 .reverse{flex-direction:row-reverse}
+.imgBox{width:40%;height:70%}
+.imgBox img{width:100%;height:100%;object-fit:contain;border-radius:20px}
+.textBox{width:40%;font-size:32px;line-height:1.6}
 
-.imgBox{width:40%;height:60%}
-.imgBox img{width:100%;height:100%;object-fit:contain;border-radius:15px}
-.textBox{width:40%;font-size:28px}
-
-/* hearts */
-.heart{position:fixed;bottom:-20px;color:white;animation:float 8s linear infinite}
+/* HEARTS */
+.heart{position:fixed;bottom:-20px;color:pink;animation:float 8s linear infinite}
 @keyframes float{0%{transform:translateY(0)}100%{transform:translateY(-100vh)}}
 
-/* rocket */
-#rocket{font-size:80px;transition:transform 2s ease}
+/* FINAL */
+#finalText{font-size:60px;transition:1.5s}
+.slideDown{transform:translateY(250px)}
+#finalMsg{display:none;font-size:28px;background:rgba(0,0,0,0.7);padding:20px;border-radius:15px}
+
+/* ROCKET */
+#rocket{font-size:80px;transition:2s}
 #count{font-size:50px}
-#loveText{display:none;font-size:50px}
+#love{display:none;font-size:50px}
 
-/* hidden */
-#hiddenMsg{display:none;font-size:26px;text-align:center;width:80%}
+/* BUTTON */
+#btn{padding:15px 25px;background:pink;border-radius:30px;font-size:20px}
+#msg{display:none;font-size:26px;width:80%;text-align:center}
 
-/* end */
-#endLine{position:absolute;bottom:-100px;font-size:28px;text-align:center;width:100%;transition:2s}
-
-#finalMessage{display:none;background:rgba(0,0,0,0.7);padding:20px;border-radius:15px}
+/* END */
+#end{position:absolute;bottom:-100px;font-size:28px;text-align:center;width:100%;transition:2s}
 
 </style>
 </head>
 <body>
 
 <div id="lock">
-<h1>💖 Welcome Khushi 💖</h1>
-<p>Enter Secret Password</p>
-<input type="password" id="pass">
-<button onclick="unlock()">Unlock ❤️</button>
+<h1>💖 Welcome 💖</h1>
+<input type="password" id="pass" placeholder="Enter password">
+<button onclick="unlock()">Unlock</button>
 </div>
 
 <audio id="music" src="song.mp3" loop></audio>
 
-<div id="slides">
-
+<!-- SLIDES -->
 <div class="slide active">
-<div class="row">
-<div class="imgBox"><img src="us1.jpg"></div>
-<div class="textBox">तुम्हारी मुस्कान में कुछ बात है,<br>दिल को सुकून देने वाली रात है</div>
-</div>
+<div class="row"><div class="imgBox"><img src="us1.jpg"></div><div class="textBox">तुम्हारी मुस्कान में कुछ बात है<br>दिल को सुकून देने वाली रात है</div></div>
 </div>
 
 <div class="slide">
-<div class="row reverse">
-<div class="imgBox"><img src="us2.jpg"></div>
-<div class="textBox">तेरे बिना अधूरी सी लगती है जिंदगी</div>
-</div>
+<div class="row reverse"><div class="imgBox"><img src="us2.jpg"></div><div class="textBox">तेरे बिना अधूरी सी लगती है जिंदगी</div></div>
 </div>
 
 <div class="slide">
-<div class="row">
-<div class="imgBox"><img src="us3.jpg"></div>
-<div class="textBox">तेरी हंसी में सुकून सा है</div>
-</div>
+<div class="row"><div class="imgBox"><img src="us3.jpg"></div><div class="textBox">तेरी हंसी में सुकून सा है</div></div>
 </div>
 
 <div class="slide">
-<div class="row reverse">
-<div class="imgBox"><img src="us4.jpg"></div>
-<div class="textBox">हर पल तेरा साथ चाहिए</div>
-</div>
+<div class="row reverse"><div class="imgBox"><img src="us4.jpg"></div><div class="textBox">हर पल तेरा साथ चाहिए</div></div>
 </div>
 
-<div class="slide" id="finalSlide">
-<h1>Happy Birthday Khushi ❤️</h1>
-<div id="finalMessage">You are my everything ❤️</div>
+<div class="slide" id="final">
+<h1 id="finalText">Happy Birthday Khushi ❤️</h1>
+<div id="finalMsg">You are my everything ❤️</div>
 </div>
 
 <div class="slide" id="rocketSlide">
-<div id="rocket">🚀</div>
 <div id="count">3</div>
-<div id="loveText">I Love You Khushali ❤️</div>
+<div id="rocket">🚀</div>
+<div id="love">I Love You Khushali ❤️</div>
 </div>
 
 <div class="slide">
-<button onclick="showHidden()">💖 Please Press Me 💖</button>
-<div id="hiddenMsg"></div>
+<div id="btn" onclick="showMsg()">💖 Please Press Me 💖</div>
+<div id="msg"></div>
 </div>
 
 <div class="slide">
-<div id="endLine">Thank you for coming into my life Khushali,<br>God may bless you ❤️</div>
-</div>
-
+<div id="end">Thank you for coming into my life Khushali,<br>God bless you always ❤️</div>
 </div>
 
 <script>
-let slides=document.querySelectorAll('.slide');let i=0;let interval;
+let slides=document.querySelectorAll('.slide');let i=0;let inter;
 
 function unlock(){
  if(document.getElementById('pass').value==='14052001'){
@@ -118,15 +103,19 @@ function unlock(){
 }
 
 function start(){
- interval=setInterval(()=>{
- if(i===slides.length-1){clearInterval(interval);return}
+ inter=setInterval(()=>{
+ if(i===slides.length-1){clearInterval(inter);return}
  slides[i].classList.remove('active');
  i++;
  slides[i].classList.add('active');
 
- if(i===4){setTimeout(()=>{document.getElementById('finalMessage').style.display='block'},3000)}
- if(i===5){startRocket()}
- if(i===7){document.getElementById('endLine').style.bottom='40%'}
+ if(i===4){setTimeout(()=>{
+ document.getElementById('finalText').classList.add('slideDown');
+ document.getElementById('finalMsg').style.display='block';
+ },3000)}
+
+ if(i===5) rocket();
+ if(i===7) document.getElementById('end').style.bottom='40%';
 
  },7000);
 }
@@ -137,36 +126,33 @@ setInterval(()=>{
  setTimeout(()=>h.remove(),8000);
 },300);
 
-// rocket FIXED
-function startRocket(){
+// rocket
+function rocket(){
  let c=3;
- let rocket=document.getElementById('rocket');
  let t=setInterval(()=>{
  document.getElementById('count').innerHTML=c;
  c--;
  if(c<0){
  clearInterval(t);
  document.getElementById('count').style.display='none';
- rocket.style.transform='translateY(-300px)';
+ document.getElementById('rocket').style.transform='translateY(-300px)';
  setTimeout(()=>{
- rocket.style.display='none';
- document.getElementById('loveText').style.display='block';
+ document.getElementById('rocket').style.display='none';
+ document.getElementById('love').style.display='block';
  },2000);
  }
  },1000);
 }
 
-// button FIXED
-function showHidden(){
- let msg="You are my peace, my happiness, and my forever. I will always love you ❤️";
- let el=document.getElementById('hiddenMsg');
- el.innerHTML="";
- el.style.display='block';
+// button
+function showMsg(){
+ let txt="You are my peace, my happiness, and my forever. I will always love you ❤️";
+ let el=document.getElementById('msg');
+ el.innerHTML="";el.style.display='block';
  let j=0;
  let t=setInterval(()=>{
- el.innerHTML+=msg[j];
- j++;
- if(j>=msg.length) clearInterval(t);
+ el.innerHTML+=txt[j];j++;
+ if(j>=txt.length)clearInterval(t);
  },40);
 }
 </script>
