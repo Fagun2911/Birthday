@@ -59,7 +59,7 @@ button{background:#ff4d6d;color:white;cursor:pointer}
 <button onclick="unlock()">Unlock</button>
 </div>
 
-<audio id="music" src="song.mp3" loop></audio>
+<audio id="music" src="song1.mp3" loop></audio>
 
 <div class="slide active">
 <div class="row">
@@ -104,7 +104,7 @@ button{background:#ff4d6d;color:white;cursor:pointer}
 
 <!-- NEW FINAL FLOATING IMAGE SLIDE -->
 <div class="slide" id="lastSlide">
-<img src="us5.jpg">
+<img src="us6.jpg">
 <div id="lastText">I Love you soooooo much Khushi...💕♾️</div>
 </div>
 
@@ -201,22 +201,24 @@ function typeTheEnd(){
   },150);
 }
 
-// extend slide logic
-let originalStart = startSlides;
-startSlides = function(){
-  originalStart();
-  let checkEnd = setInterval(()=>{
-    if(i === slides.length-1){
-      setTimeout(()=>{
-        slides[i].classList.remove('active');
-        i++;
-        slides[i].classList.add('active');
-        typeTheEnd();
-        clearInterval(checkEnd);
-      },6000);
-    }
-  },1000);
+// FIXED: Proper THE END trigger after last slide
+function showTheEnd(){
+  let allSlides = document.querySelectorAll('.slide');
+  allSlides.forEach(s=>s.classList.remove('active'));
+  let endSlide = document.getElementById('theEndSlide');
+  endSlide.classList.add('active');
+  typeTheEnd();
 }
+
+// Hook into last slide timing
+let originalStartSlides = startSlides;
+startSlides = function(){
+  originalStartSlides();
+  setTimeout(()=>{
+    showTheEnd();
+  }, 60000); // adjust timing if needed
+}
+
 </script>
 
 <style>
@@ -224,8 +226,14 @@ startSlides = function(){
 #theEndText{
   font-size:clamp(50px,10vw,120px);
   font-family:'Brush Script MT',cursive;
-  letter-spacing:10px;
+  letter-spacing:12px;
   text-align:center;
+  opacity:0;
+  animation:fadeIn 2s forwards;
+}
+
+@keyframes fadeIn{
+  to{opacity:1}
 }
 </style>
 
