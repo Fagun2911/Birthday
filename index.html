@@ -7,30 +7,46 @@
 <style>
 body,html{margin:0;padding:0;font-family:sans-serif;background:black;color:white;overflow:hidden}
 
-#lock{position:fixed;width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;background:linear-gradient(135deg,#ff758c,#ff7eb3);z-index:10;text-align:center}
-input,button{padding:12px 18px;border-radius:25px;border:none;margin-top:10px;font-size:18px}
+#lock{position:fixed;width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;background:linear-gradient(135deg,#ff758c,#ff7eb3);z-index:10;text-align:center;padding:20px}
+input,button{padding:12px 18px;border-radius:25px;border:none;margin-top:10px;font-size:16px}
 button{background:#ff4d6d;color:white;cursor:pointer}
 
-.slide{position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;opacity:0;transition:1s}
+.slide{position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;opacity:0;transition:1s;padding:20px;box-sizing:border-box}
 .slide.active{opacity:1}
 
-.row{display:flex;gap:20px;align-items:center;justify-content:center;width:100%}
+.row{display:flex;gap:20px;align-items:center;justify-content:center;width:100%;flex-wrap:wrap}
 .reverse{flex-direction:row-reverse}
-.imgBox{width:30%}
-.imgBox img{width:100%;height:auto;object-fit:contain}
-.textBox{width:40%;font-size:28px}
 
-#finalMsg{display:none;font-size:28px;text-align:center}
+.imgBox{width:30%;min-width:220px}
+.imgBox img{width:100%;height:auto;object-fit:contain;border-radius:15px}
 
-#count{font-size:80px;font-family:cursive}
+.textBox{width:45%;min-width:250px;font-size:clamp(18px,2.5vw,30px);line-height:1.6}
 
-#heartBeat{font-size:70px;display:none;animation:beat 1s infinite}
+#finalMsg{display:none;font-size:clamp(18px,2.5vw,28px);text-align:center}
+
+#count{font-size:clamp(40px,8vw,90px);font-family:cursive}
+
+#heartBeat{font-size:60px;display:none;animation:beat 1s infinite}
 @keyframes beat{50%{transform:scale(1.3)}}
 
-#end{font-size:30px;text-align:center;white-space:pre-wrap}
+#end{font-size:clamp(18px,2.5vw,30px);text-align:center;white-space:pre-wrap}
 
+/* floating hearts */
 .heart{position:fixed;bottom:-20px;animation:float 8s linear infinite}
 @keyframes float{to{transform:translateY(-100vh)}}
+
+/* final floating image */
+#lastSlide{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+#lastSlide img{width:clamp(200px,40vw,400px);border-radius:20px;animation:floatImg 4s ease-in-out infinite}
+@keyframes floatImg{0%,100%{transform:translateY(0)}50%{transform:translateY(-20px)}}
+#lastText{margin-top:20px;font-size:clamp(20px,3vw,32px)}
+
+@media(max-width:768px){
+.row{flex-direction:column}
+.reverse{flex-direction:column}
+.imgBox{width:80%}
+.textBox{width:90%;text-align:center}
+}
 
 </style>
 </head>
@@ -80,16 +96,16 @@ button{background:#ff4d6d;color:white;cursor:pointer}
 </div>
 </div>
 
-<div class="slide">
-<div id="count">3</div>
-</div>
+<div class="slide"><div id="count">3</div></div>
 
-<div class="slide">
-<div id="heartBeat">❤️</div>
-</div>
+<div class="slide"><div id="heartBeat">❤️</div></div>
 
-<div class="slide">
-<div id="end"></div>
+<div class="slide"><div id="end"></div></div>
+
+<!-- NEW FINAL FLOATING IMAGE SLIDE -->
+<div class="slide" id="lastSlide">
+<img src="us5.jpg">
+<div id="lastText">I Love you soooooo much Khushi...💕♾️</div>
 </div>
 
 <script>
@@ -127,9 +143,7 @@ function startSlides(){
    if(i===6){
      let hb=document.getElementById('heartBeat');
      hb.style.display='block';
-     setTimeout(()=>{
-       hb.style.display='none';
-     },4000);
+     setTimeout(()=>{hb.style.display='none';},4000);
    }
 
    if(i===7){typeEnd();}
